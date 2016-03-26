@@ -14,8 +14,8 @@ var HelloWorldLayer = cc.Layer.extend({
 
         var mainscene = ccs.load(res.MainScene_json);
         this.addChild(mainscene.node);
-     
-        // 画像を使用した方法
+
+        // ジョイスティックを作成
         var joystickSkin = new SneakyJoystickSkinnedBase(); // ジョイスティックスキンのインスタンスを作成
         joystickSkin.setPosition(160, 120); // ジョイスティックスキンを配置
         joystickSkin.setBackgroundSprite(new cc.Sprite(res.joystick_background_png)); // 背景部分のスプライトを設定
@@ -29,6 +29,7 @@ var HelloWorldLayer = cc.Layer.extend({
         joystickSkin.setJoystick(joystick); // ジョイスティックスキンにジョイスティックのインスタンスを渡す
         this.addChild(joystickSkin); // 自ノードにジョイスティックスキンを追加
 
+        // ボタンを作成
         var buttonSkin = new SneakyButtonSkinnedBase(); // ボタンスキンのインスタンスを作成
         buttonSkin.setPosition(480, 120); // ボタンスキンを配置
         buttonSkin.setDefaultSprite(new cc.Sprite(res.button_normal_png)); // デフォルト状態のスプライトを設定
@@ -40,29 +41,9 @@ var HelloWorldLayer = cc.Layer.extend({
         button.setIsToggleable(false); // トグル機能を無効
         buttonSkin.setButton(button); // ボタンスキンにボタンのインスタンスを渡す
         this.addChild(buttonSkin); // 自ノードにボタンを追加
-        
-        /*
-        // ColoredCircleSpriteを使用した方法
-        var joystickSkin = new SneakyJoystickSkinnedBase(); // ジョイスティックスキンのインスタンスを作成
-        joystickSkin.setPosition(160, 120); // ジョイスティックスキンを配置
-        joystickSkin.setBackgroundSprite(new ColoredCircleSprite(cc.color(255, 50, 50, 255), 64)); // バックグラウンドのスプライトを設定
-        joystickSkin.setThumbSprite(new ColoredCircleSprite(cc.color(50, 50, 255, 255), 32)); // 親指部分のスプライトを設定
-        var joystick = new SneakyJoystick(cc.rect(0, 0, 128, 128)); // ジョイスティック機能を作成
-        joystickSkin.setJoystick(joystick); // ジョイスティックスキンにジョイスティックのインスタンスを渡す
-        this.addChild(joystickSkin); // 自ノードにジョイスティックスキンを追加
-        
-        var buttonSkin = new SneakyButtonSkinnedBase(); // ボタンスキンのインスタンスを作成
-        buttonSkin.setPosition(480, 120); // ボタンスキンを配置
-        buttonSkin.setDefaultSprite(new ColoredCircleSprite(cc.color(128, 255, 128, 128), 32)); // デフォルト状態のスプライトを設定
-        buttonSkin.setActivatedSprite(new ColoredCircleSprite(cc.color(255, 255, 255, 255), 32)); // 処理中状態のスプライトを設定
-        buttonSkin.setPressSprite(new ColoredCircleSprite(cc.color(255, 0, 0, 255), 32)); // 押下状態のスプライトを設定
-        var button = new SneakyButton(cc.rect(0, 0, 64, 64)); // ボタンのインスタンスを作成
-        buttonSkin.setButton(button); // ボタンスキンにボタンのインスタンスを渡す
-        this.addChild(buttonSkin); // 自ノードにボタンを追加
-        */
-        
+
         // ボールを作成
-        var ball = new ColoredCircleSprite(cc.color(255, 255, 0, 255), 32); // ボールを作成
+        var ball = new cc.Sprite(res.joystick_thumb_png); // ボールを作成
         this.addChild(ball); // 自ノードに追加
         ball.setPosition(this.getContentSize().width / 2, this.getContentSize().height / 2); // 自ノードの中心に配置
         var rate = 20; // 速度の係数を設定
@@ -86,4 +67,3 @@ var HelloWorldScene = cc.Scene.extend({
         this.addChild(layer);
     }
 });
-
